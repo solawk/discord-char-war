@@ -1,0 +1,22 @@
+{
+  "name": "shenanigans",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Shenbot.js",
+  "scripts": {
+    "start": "node Shenbot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheSolSpb/shenbot.git"
+  },
+  "author": "Solawk",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "discord.js": "^12.2.0",
+    "node-gyp": "^6.1.0",
+    "pg": "^8.3.0",
+    "sequelize": "^6.3.4"
+  }
+}
