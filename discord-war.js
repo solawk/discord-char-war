@@ -29,7 +29,7 @@ const projectile = require("./projectile");
 require("discord.js");
 
 const ws = require("ws");
-const wsServer = new ws.Server({port: 4040, clientTracking: true});
+const wsServer = new ws.Server({port: process.env.PORT, clientTracking: true});
 
 wsServer.on('connection', function onClientConnect(ws)
 {
