@@ -43,7 +43,7 @@ const Tickrate = 60;
 let prevDate = null;
 let nowDate = null;
 let dateCounter = 0;
-setInterval(Process, 1 / Tickrate);
+setInterval(Process, 1000 / Tickrate);
 
 let Fighters = new Set;
 let Projectiles = new Set;
