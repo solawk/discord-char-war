@@ -39,6 +39,10 @@ wsServer.on('connection', function onClientConnect(ws)
 });
 
 const Tickrate = 60;
+
+let prevDate = null;
+let nowDate = null;
+let dateCounter = 0;
 setInterval(Process, 1 / Tickrate);
 
 let Fighters = new Set;
@@ -182,6 +186,20 @@ function MessageHandler(message)
 
 function Process()
 {
+    nowDate = new Date();
+    dateCounter++;
+    if (dateCounter === 60)
+    {
+        if (prevDate != null)
+        {
+            const sPassed = (nowDate - prevDate) / 1000;
+            console.log("1 second of interval is " + sPassed + " on Heroku");
+        }
+
+        prevDate = nowDate;
+        dateCounter = 0;
+    }
+
     for (const fighter of Fighters)
     {
         ProcessFighter(fighter);
@@ -210,7 +228,7 @@ function AddFighter(userID, char, dir)
 {
     const SpawnpointPolar =
         {
-            direction: dir + (-Math.PI/4 + Math.random() * (Math.PI/2)),
+            direction: dir + (-Math.PI / 4 + Math.random() * (Math.PI / 2)),
             distance: (Math.random() * 0.3 + 0.6) * FieldRadius
         };
 
