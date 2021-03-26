@@ -1,4 +1,4 @@
-const ws = new WebSocket('wss://discord-char-war.herokuapp.com');
+const ws = new WebSocket('wss://discord-char-war.herokuapp.com');//
 
 let prevDate = null;
 let nowDate = null;
