@@ -210,11 +210,14 @@ function Process()
     }
     else
     {
-        if (new Date().getSeconds() % 20 === 0 && IdlePacketController)
+        if (new Date().getSeconds() % 20 === 0)
         {
-            IdlePacketController = false;
-            console.log("Idling packet sent");
-            SendField();
+            if (IdlePacketController)
+            {
+                IdlePacketController = false;
+                console.log("Idling packet sent");
+                SendField();
+            }
         }
         else
         {
