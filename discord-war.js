@@ -222,11 +222,6 @@ function Process()
         {
             OffIdleMode();
         }
-
-        if (IdleTime > 0)
-        {
-            IdleTime = 0;
-        }
     }
 }
 
@@ -234,6 +229,7 @@ function OffIdleMode()
 {
     console.log("Idle mode off");
     IdleMode = false;
+    IdleTime = 0;
 }
 
 /*
