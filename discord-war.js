@@ -36,13 +36,15 @@ wsServer.on('connection', function onClientConnect(ws)
     console.log("Client connected");
     SendField(ws);
     SendAllInfo(ws);
+
+    ws.on('close', function onClientDisconnect(ws)
+    {
+        console.log("Client disconnected");
+    });
 });
 
 const Tickrate = 60;
 
-let prevDate = null;
-let nowDate = null;
-let dateCounter = 0;
 setInterval(Process, 1000 / Tickrate);
 
 let Fighters = new Set;
@@ -186,20 +188,6 @@ function MessageHandler(message)
 
 function Process()
 {
-    nowDate = new Date();
-    dateCounter++;
-    if (dateCounter === 60)
-    {
-        if (prevDate != null)
-        {
-            const sPassed = (nowDate - prevDate) / 1000;
-            console.log("1 second of interval is " + sPassed + " on Heroku");
-        }
-
-        prevDate = nowDate;
-        dateCounter = 0;
-    }
-
     for (const fighter of Fighters)
     {
         ProcessFighter(fighter);
