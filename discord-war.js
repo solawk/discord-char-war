@@ -207,6 +207,11 @@ function Process()
     {
         SendField();
     }
+    else if (new Date().getSeconds() % 20 === 0)
+    {
+        console.log("Idling packet sent");
+        SendField();
+    }
 
     if (Projectiles.size === 0)
     {
