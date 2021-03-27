@@ -44,8 +44,10 @@ wsServer.on('connection', function onClientConnect(ws)
 });
 
 const Tickrate = 60;
-
 setInterval(Process, 1000 / Tickrate);
+
+let IdleTime = 0;
+let IdleMode = false;
 
 let Fighters = new Set;
 let Projectiles = new Set;
@@ -198,7 +200,33 @@ function Process()
         ProcessProjectile(proj);
     }
 
-    SendField();
+    if (!IdleMode)
+    {
+        SendField();
+    }
+
+    if (Projectiles.size === 0)
+    {
+        IdleTime++;
+        if (IdleTime === Tickrate * 5)
+        {
+            IdleMode = true;
+            console.log("Idle mode on");
+        }
+    }
+    else
+    {
+        if (IdleMode)
+        {
+            console.log("Idle mode off");
+            IdleMode = false;
+        }
+
+        if (IdleTime > 0)
+        {
+            IdleTime = 0;
+        }
+    }
 }
 
 /*
