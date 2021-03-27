@@ -36,6 +36,7 @@ wsServer.on('connection', function onClientConnect(ws)
     console.log("Client connected");
     SendField(ws);
     SendAllInfo(ws);
+    OffIdleMode();
 
     ws.on('close', function onClientDisconnect(ws)
     {
