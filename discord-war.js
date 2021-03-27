@@ -164,6 +164,8 @@ function SendKills(key, ws)
 
 function MessageHandler(message)
 {
+    OffIdleMode();
+
     const authorID = message.author.id.slice(-8);
     if (!Avatars.has(authorID))
     {
@@ -218,8 +220,7 @@ function Process()
     {
         if (IdleMode)
         {
-            console.log("Idle mode off");
-            IdleMode = false;
+            OffIdleMode();
         }
 
         if (IdleTime > 0)
@@ -227,6 +228,12 @@ function Process()
             IdleTime = 0;
         }
     }
+}
+
+function OffIdleMode()
+{
+    console.log("Idle mode off");
+    IdleMode = false;
 }
 
 /*
