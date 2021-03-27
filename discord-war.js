@@ -49,6 +49,7 @@ setInterval(Process, 1000 / Tickrate);
 
 let IdleTime = 0;
 let IdleMode = false;
+let IdlePacketController = true;
 
 let Fighters = new Set;
 let Projectiles = new Set;
@@ -207,10 +208,18 @@ function Process()
     {
         SendField();
     }
-    else if (new Date().getSeconds() % 20 === 0)
+    else
     {
-        console.log("Idling packet sent");
-        SendField();
+        if (new Date().getSeconds() % 20 === 0 && IdlePacketController)
+        {
+            IdlePacketController = false;
+            console.log("Idling packet sent");
+            SendField();
+        }
+        else
+        {
+            IdlePacketController = true;
+        }
     }
 
     if (Projectiles.size === 0)
